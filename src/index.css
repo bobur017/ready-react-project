@@ -1,0 +1,87 @@
+.login{
+    width: 100%;
+    height: 100%;
+    background: rgb(219, 219, 219);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebarButton:hover{
+    cursor: pointer;
+}
+.canvas{
+    width: 200px !important;
+}
+.pageA4{
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    background: rgb(219, 219, 219);
+    padding:20px;
+    font-size: 20px !important;
+}
+.header{
+    height: 20%;
+}
+.border-flag{
+    border: 10px solid blue !important;
+    /* border: none; */
+    padding: 20px;
+}
+.pageA{
+    width: 1000px;
+}
+
+.center1{
+    width: 33%;
+}
+
+.left1{
+    width: 33%;
+}
+
+.right1{
+    width: 33%;
+}
+
+.leftBar{
+    width:40px;
+    min-height:100vh !important;
+    height: 100%;
+    background: #005f33;
+    position: absolute;
+    z-index: 9999;
+    transition: 100ms;
+}
+
+.leftBar:hover{
+    width: 100px;
+    /* background: rgb(45, 243, 151); */
+    z-index: 9999;
+}
+.headerMenu{
+    margin-left: 40px;
+}
+.photo{
+    width: 40px;
+    text-align: center;
+}
+.leftBar:hover > .photo{
+    width: 100px;
+}
+.textLine{
+    font-size: small; 
+    display: none;
+    text-decoration: none !important;
+    color: white;
+
+}
+
+.leftBar:hover .textLine{
+    display: block;
+    text-decoration: none !important;
+}
