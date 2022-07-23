@@ -131,7 +131,7 @@ function Admin() {
           <Modal.Body>
             <Form onSubmit={submitAnaliys} id="analysSubmit">
               <Form.Label>Laboratory (name) / Лаборатория (название): </Form.Label>
-              <Form.Control name={'file'} type="file" accept="image/png" onChange={getFile} />
+              <Form.Control name={'file'} type="file" accept="image/*" onChange={getFile} />
             </Form>
           </Modal.Body>
           <Modal.Footer>
@@ -150,7 +150,7 @@ function Admin() {
             <Modal.Title>{resultAnalis?.fullName}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src={"https://185.217.131.74:8899/test/api/img/image/" + imgId} width={200} height={200} />
+            <img src={"http://185.217.131.74:8899/test/api/img/image/" + imgId} width={200} height={200} />
             {/* <img src={"http://192.168.43.134:8899/test/api/img/image/" + imgId} width={200} height={200} alt={"http://192.168.1.102:8899/test/api/img/" + imgId} /> */}
           </Modal.Body>
           <Modal.Footer>
