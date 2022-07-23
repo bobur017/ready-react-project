@@ -7,10 +7,14 @@ const slice = createSlice({
         resultAnalis: {},
         user: [],
         token: {},
-        error: {}
+        error: {},
+        image: []
     },
     reducers: {
         resultReducer: (state, action) => {
+            state.result = action.payload;
+        },
+        imageReducer: (state, action) => {
             state.result = action.payload;
         },
         resultAnalisReducer: (state, action) => {
@@ -60,19 +64,19 @@ export const addAnalys = (data) => setApi({
     error: slice.actions.errorReducer
 });
 
-export const addAnalys2 = (data) => setApi({
-    url: "/test/api/img/1",
+export const getImage = (data) => setApi({
+    url: "/test/api/img/image/" + data,
     method: "get",
     // headers: {
     //     "Content-Type": "multipart/form-data",
     // },
     // data,
-    success: slice.actions.resultReducer,
+    success: slice.actions.imageReducer,
     error: slice.actions.errorReducer
 });
 
 export const getAll = () => setApi({
-    url: "/qr/api/analysis",
+    url: "/test/api/img/files",
     method: "get",
     headers: {
         Authorization: getToken(),
@@ -80,7 +84,6 @@ export const getAll = () => setApi({
         id: getId(),
 
     },
-
     success: slice.actions.userReducer,
     error: slice.actions.errorReducer
 });

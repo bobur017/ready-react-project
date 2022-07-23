@@ -15,7 +15,7 @@ function App() {
 
       <Routes>
         {/* <Route path=":id" element={<QrPage />} /> */}
-        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/page" element={<Login />} />
         <Route path="/" element={<Admin />} />
       </Routes>
       <ToastContainer />

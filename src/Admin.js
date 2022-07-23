@@ -3,9 +3,9 @@ import { Modal, Button, Form, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import QrPage2 from './QrPage2';
-import { addAnalys, addAnalys2, blocked, deleteAnalysis, getAll, getOne } from './QrReducer';
+import { addAnalys, addAnalys2, blocked, deleteAnalysis, getAll, getImage, getOne } from './QrReducer';
 import logo from "./image/logo.png"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -13,20 +13,26 @@ function Admin() {
   const error = useSelector(state => state.qr.error);
   const user = useSelector(state => state.qr.user);
   const resultAnalis = useSelector(state => state.qr.resultAnalis);
+  const image = useSelector(state => state.qr.image);
   const [show, setShow] = useState(false);
+  const [imgId, setImgId] = useState();
   const [show2, setShow2] = useState(false);
   const [file, setFile] = useState();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => setShow2(true);
+  const handleShow2 = (id) => {
+    setImgId(id);
+    // dispatch(getImage(id));
+    setShow2(true)
+  };
   const firstUpdate = useRef(true);
   const history = useNavigate();
 
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
-      // dispatch(getAll());
+      dispatch(getAll());
     } else {
 
     }
@@ -37,12 +43,15 @@ function Admin() {
     if (firstUpdate.current) {
       // firstUpdate.current = false;
     } else {
-      if (result?.state) {
-        toast.success(result?.message);
-        // dispatch(getAll());
-        // handleClose();
-        console.log(result);
-      }
+      console.log(image, "image");
+    }
+  }, [image])
+
+  useEffect(() => {
+    if (firstUpdate.current) {
+      // firstUpdate.current = false;
+    } else {
+      toast.success(result);
     }
   }, [result])
 
@@ -52,7 +61,8 @@ function Admin() {
     } else {
       toast.error(error);
       toast.error(error?.data);
-      toast.error(error?.text);
+      // toast.error(error?.text);
+      // toast.success(result);
     }
   }, [error])
 
@@ -60,9 +70,9 @@ function Admin() {
     e.preventDefault();
     // var file = e.target
     var data = new FormData();
-    data.append('file', file);
+    data.append('files', file);
     dispatch(addAnalys(data));
-    dispatch(addAnalys2(data));
+    // dispatch(addAnalys2(data));
     console.log(data, "dataaa");
   }
 
@@ -81,6 +91,10 @@ function Admin() {
         </a>
       </div>
 
+      <Link to={'/page'}>
+        <Button>Push to page</Button>
+      </Link>
+
 
 
       <div className='headerMenu'>
@@ -89,7 +103,24 @@ function Admin() {
             Bemorni kiritish
           </Button>
         </div>
-
+        <Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Id</th>
+            </tr>
+            <tbody>
+              {user?.map((item, index) =>
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td onClick={() => handleShow2(item.id)}>{item.name}</td>
+                  <td>{item.id}</td>
+                </tr>
+              )}
+            </tbody>
+          </thead>
+        </Table>
         <div>
 
         </div>
@@ -119,7 +150,8 @@ function Admin() {
             <Modal.Title>{resultAnalis?.fullName}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <QrPage2 resultAnalis={resultAnalis} />
+            <img src={"https://185.217.131.74:8899/test/api/img/image/" + imgId} width={200} height={200} />
+            {/* <img src={"http://192.168.43.134:8899/test/api/img/image/" + imgId} width={200} height={200} alt={"http://192.168.1.102:8899/test/api/img/" + imgId} /> */}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose2}>

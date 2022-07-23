@@ -9,7 +9,8 @@ const api = ({ dispatch }) => (next) => (action) => {
         console.log(data, url, "data");
         axios({
             // baseURL: "https://jsonplaceholder.typicode.com",
-            baseURL: "http://192.168.100.40:8899",
+            baseURL: "https://185.217.131.74:8899",
+            // baseURL: "http://192.168.43.134:8899",
             url,
             method,
             data,
@@ -20,11 +21,13 @@ const api = ({ dispatch }) => (next) => (action) => {
                 type: success,
                 payload: res.data
             });
+            console.log(res.data, "success");
         }).catch(err => {
             dispatch({
                 type: error,
                 payload: err?.response?.data
             });
+            console.log(err?.response?.data, "error");
         });
     }
 }

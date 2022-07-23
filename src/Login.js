@@ -15,34 +15,15 @@ function Login() {
     const firstUpdate = useRef(true);
 
     useEffect(() => {
-        if (firstUpdate.current) {
-            firstUpdate.current = false;
-        } else {
-            if (resultToken?.success) {
-                history("/insert-info");
-            }
-            localStorage.setItem('Authorization', resultToken.token);
-            localStorage.setItem("role", resultToken?.role);
-            localStorage.setItem("id", resultToken?.id);
-        }
+
     }, [resultToken]);
 
     useEffect(() => {
-        if (firstUpdate.current) {
-            firstUpdate.current = false;
-        } else {
-            toast.error(error);
-            toast.error(error?.data);
-            toast.error(error?.username);
-        }
+
     }, [error]);
 
     const submitChange = (e) => {
-        e.preventDefault();
-        dispatch(login({
-            login: e.target.login.value,
-            password: e.target.password.value
-        }))
+
         //klkjljljlj
     }
 
