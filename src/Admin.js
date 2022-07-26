@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Modal, Button, Form, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import QrPage2 from './QrPage2';
-import { addAnalys, addAnalys2, blocked, deleteAnalysis, getAll, getImage, getOne } from './QrReducer';
+import { addAnalys, getAll } from './QrReducer';
 import logo from "./image/logo.png"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -27,12 +26,11 @@ function Admin() {
     setShow2(true)
   };
   const firstUpdate = useRef(true);
-  const history = useNavigate();
 
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
-      dispatch(getAll());
+      dispatch(() => getAll());
     } else {
 
     }
@@ -110,16 +108,16 @@ function Admin() {
               <th>Name</th>
               <th>Id</th>
             </tr>
-            <tbody>
-              {user?.map((item, index) =>
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td onClick={() => handleShow2(item.id)}>{item.name}</td>
-                  <td>{item.id}</td>
-                </tr>
-              )}
-            </tbody>
           </thead>
+          <tbody>
+            {user?.map((item, index) =>
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td onClick={() => handleShow2(item.id)}>{item.name}</td>
+                <td>{item.id}</td>
+              </tr>
+            )}
+          </tbody>
         </Table>
         <div>
 
@@ -150,7 +148,10 @@ function Admin() {
             <Modal.Title>{resultAnalis?.fullName}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src={"http://185.217.131.74:8899/test/api/img/image/" + imgId} width={200} height={200} />
+            {/* <img src={"https://localhost:8899/test/api/img/image/" + imgId} width={200} height={200} /> */}
+            <img src={"https://obhavouz.uz/test/api/img/image/" + imgId} width={200} height={200} alt={"new Image" + imgId} />
+            {/* <img src={"https://futboluz.uz/test/api/img/image/" + imgId} width={200} height={200} /> */}
+            {/* <img src={"https://185.217.131.74:8899/test/api/img/image/" + imgId} width={200} height={200} /> */}
             {/* <img src={"http://192.168.43.134:8899/test/api/img/image/" + imgId} width={200} height={200} alt={"http://192.168.1.102:8899/test/api/img/" + imgId} /> */}
           </Modal.Body>
           <Modal.Footer>

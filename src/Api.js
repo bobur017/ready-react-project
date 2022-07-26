@@ -9,8 +9,9 @@ const api = ({ dispatch }) => (next) => (action) => {
         console.log(data, url, "data");
         axios({
             // baseURL: "https://jsonplaceholder.typicode.com",
-            baseURL: "http://185.217.131.74:8899",
-            // baseURL: "http://192.168.43.134:8899",
+            // baseURL: "https://futboluz.uz",
+            // baseURL: "http://localhost:8899",
+            baseURL: "https://obhavouz.uz",
             url,
             method,
             data,
