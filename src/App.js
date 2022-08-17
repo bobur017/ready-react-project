@@ -6,16 +6,13 @@ import QrPage from './QrPage';
 import InsertInfo from './InsertInfo';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Admin from './Admin';
+import Admin from './Home';
 
 function App() {
 
   return (
     <div >
-
       <Routes>
-        {/* <Route path=":id" element={<QrPage />} /> */}
-        <Route path="/page" element={<Login />} />
         <Route path="/" element={<Admin />} />
       </Routes>
       <ToastContainer />
